@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $fillable = ['name', 'img_url', 'slug', 'description', 'price', 'category_id'];
     protected $hidden = ['created_at', 'updated_at'];
-    protected $visible = ['name', 'img_url', 'slug', 'description', 'price', 'category_id','category'];
+    protected $visible = ['id','name', 'img_url', 'slug', 'description', 'price', 'category_id','category'];
     protected $with = ['category'];
     public function category(): BelongsTo
     {
