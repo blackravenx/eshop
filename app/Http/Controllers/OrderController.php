@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,7 +26,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create($request->except('products'));
+        $order->products()->sync($request->input('products'));
+        return response('',201);
     }
 
     /**
