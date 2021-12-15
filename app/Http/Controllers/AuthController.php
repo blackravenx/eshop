@@ -19,7 +19,7 @@ class AuthController extends Controller
         return response($response['message'], $response['status']);
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
         return response(json_encode($request));
 //
