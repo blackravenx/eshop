@@ -26,7 +26,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('categories', CategoryController::class);
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::apiResource('orders', OrderController::class);
-});
+//Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+//    Route::apiResource('orders', OrderController::class);
+//});
+Route::apiResource('orders', OrderController::class);
 
