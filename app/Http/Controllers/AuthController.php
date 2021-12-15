@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return response(json_encode($request));
+        return response(json_encode($request->all()));
 //
 //        if (Auth::attempt($request->validated())) {
 //            $auth = Auth::user();
