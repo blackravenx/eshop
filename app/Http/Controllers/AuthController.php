@@ -21,16 +21,18 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt($request->validated())) {
-            $auth = Auth::user();
-            return response([
-                'token' => $auth->createToken('token')->plainTextToken,
-                'status' => true,
-                'name' => $auth->name,
-                'email'=>$auth->email,
-            ], 200);
-        } else {
-            return response(['message' => 'Неправильные данные!'], 203);
-        }
+        return response(json_encode($request));
+//
+//        if (Auth::attempt($request->validated())) {
+//            $auth = Auth::user();
+//            return response([
+//                'token' => $auth->createToken('token')->plainTextToken,
+//                'status' => true,
+//                'name' => $auth->name,
+//                'email'=>$auth->email,
+//            ], 200);
+//        } else {
+//            return response(['message' => 'Неправильные данные!'], 203);
+//        }
     }
 }
