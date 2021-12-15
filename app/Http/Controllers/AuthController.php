@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +18,9 @@ class AuthController extends Controller
         return response($response['message'], $response['status']);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        if (Auth::attempt($request->all())) {
+        if (Auth::attempt($request->validated())) {
             $auth = Auth::user();
             return response([
                 'token' => $auth->createToken('token')->plainTextToken,
