@@ -17,27 +17,27 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return response(['orders'=>$user->orders()],200);
+        return response(['orders' => $user->orders()], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $order_req = array_merge($request->except('products'), ['user_id'=>4]);
+        $order_req = array_merge($request->except('products'), ['user_id' => Auth::id()]);
         $order = Order::create($order_req);
         $order->products()->sync($request->input('products'));
-        return response('',201);
+        return response('', 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -48,8 +48,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -60,7 +60,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
