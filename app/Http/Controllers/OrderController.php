@@ -28,7 +28,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = Order::create([$request->except('products'), 'user_id'=>4]);
+        $order_req = array_merge($request->except('products'), ['user_id'=>4]);
+        $order = Order::create($order_req);
         $order->products()->sync($request->input('products'));
         return response('',201);
     }
